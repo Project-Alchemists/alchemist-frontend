@@ -1,6 +1,6 @@
 import { Box, Heading, Flex, Icon, Input, SimpleGrid } from "@chakra-ui/react";
 import { FaSearch } from "react-icons/fa";
-import MarketCard from "components/MarketCard";
+import Card from "components/Card";
 
 const Marketplace = () => {
   const cards = [
@@ -44,7 +44,7 @@ const Marketplace = () => {
 
   return (
     <Box>
-      <Heading mb={10}>Marketplace</Heading>
+      <Heading mb={10}>Balance Cards</Heading>
       <Flex align="center" justify="center">
         <Input size="md" mx={2} />
         <Icon as={FaSearch} />
@@ -56,7 +56,7 @@ const Marketplace = () => {
         mt={10}
       >
         {cards.map(card => (
-          <MarketCard card={card} />
+          <Card card={card} />
         ))}
       </SimpleGrid>
     </Box>

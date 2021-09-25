@@ -1,6 +1,6 @@
 import { Box, Image, Badge } from "@chakra-ui/react";
 
-const Card = ({ card }) => {
+const MarketCard = ({ card }) => {
   const property = {
     imageUrl: "https://bit.ly/2Z4KKcF",
     imageAlt: "Rear view of modern home with pool",
@@ -60,4 +60,4 @@ const Card = ({ card }) => {
   );
 };
 
-export default Card;
+export default MarketCard;
