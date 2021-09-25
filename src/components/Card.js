@@ -12,6 +12,8 @@ const Card = ({ card }) => {
     rating: 4,
   };
 
+  // TODO: Recipes and unavailable card
+
   return (
     <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden">
       <Image src={property.imageUrl} alt={property.imageAlt} />

@@ -3,6 +3,7 @@ import { Link, Box, Flex, Text, Button, Stack } from "@chakra-ui/react";
 import { Logo } from "Logo";
 import { Link as RouterLink } from "react-router-dom";
 import { ColorModeSwitcher } from "./ColorModeSwitcher";
+import WalletBtn from "./WalletBtn";
 
 const NavBar = props => {
   const [isOpen, setIsOpen] = useState(false);
@@ -81,7 +82,8 @@ const MenuLinks = ({ isOpen }) => {
         <MenuItem to="/marketplace">Marketplace</MenuItem>
         <MenuItem to="/balance">Balance</MenuItem>
         <MenuItem to="/about">About</MenuItem>
-        {!localStorage.getItem("jwtToken") && (
+        {/* <WalletBtn />  */} // TODO: Wallet Button Fix
+        {/* {!localStorage.getItem("jwtToken") && (
           <>
             <MenuItem to="/login">
               <Button
@@ -140,7 +142,7 @@ const MenuLinks = ({ isOpen }) => {
               Sign Out
             </Button>
           </MenuItem>
-        )}
+        )} */}
       </Stack>
     </Box>
   );

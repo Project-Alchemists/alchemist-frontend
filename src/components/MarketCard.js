@@ -12,6 +12,8 @@ const MarketCard = ({ card }) => {
     rating: 4,
   };
 
+  // TODO: Seller info and buy button
+
   return (
     <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden">
       <Image src={property.imageUrl} alt={property.imageAlt} />

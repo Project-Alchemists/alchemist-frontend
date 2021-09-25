@@ -49,7 +49,7 @@ const BalanceCards = () => {
         <Input size="md" mx={2} />
         <Icon as={FaSearch} />
       </Flex>
-
+      // TODO: Add crafting button and popup modal component
       <SimpleGrid
         columns={{ base: 1, md: 3 }}
         spacing={{ base: 5, lg: 8 }}
