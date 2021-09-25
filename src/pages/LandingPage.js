@@ -1,11 +1,11 @@
-import { Box, Text } from '@chakra-ui/react';
+import { Box, Text } from "@chakra-ui/react";
 
 const LandingPage = () => {
   return (
     <Box>
       <Text fontSize="xl" fontWeight="bold">
         Alchemist
-      </Text>{' '}
+      </Text>
     </Box>
   );
 };

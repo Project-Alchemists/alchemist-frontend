@@ -2,7 +2,7 @@ import { Box, Heading, Flex, Icon, Input, SimpleGrid } from "@chakra-ui/react";
 import { FaSearch } from "react-icons/fa";
 import Card from "components/Card";
 
-const Marketplace = () => {
+const BalanceCards = () => {
   const cards = [
     {
       name: "Iron",
@@ -63,4 +63,4 @@ const Marketplace = () => {
   );
 };
 
-export default Marketplace;
+export default BalanceCards;
