@@ -1,8 +1,8 @@
-import { Button } from '@chakra-ui/button';
-import { Image } from '@chakra-ui/image';
-import { Box, Stack } from '@chakra-ui/layout';
-import React, { useEffect, useState } from 'react';
-import Web3 from 'web3';
+import { Button } from "@chakra-ui/button";
+import { Image } from "@chakra-ui/image";
+import { Box, Stack } from "@chakra-ui/layout";
+import React, { useEffect, useState } from "react";
+import Web3 from "web3";
 
 const WalletBtn = () => {
   let web3;
@@ -32,16 +32,16 @@ const WalletBtn = () => {
   const GetWeb3 = async () => {
     if (!window.onewallet && !window.ethereum) {
       console.log(
-        'You do not have any supported wallet, connect either One Wallet or Metamask'
+        "You do not have any supported wallet, connect either One Wallet or Metamask"
       );
       return;
     } else {
       if (window.ethereum) {
         web3 = new Web3(window.ethereum);
-        await window.ethereum.request({ method: 'eth_requestAccounts' });
+        await window.ethereum.request({ method: "eth_requestAccounts" });
         setWalletConnected(true);
       } else {
-        console.log('Metamask wallet not avaiable');
+        console.log("Metamask wallet not avaiable");
         web3 = new Web3(window.onewallet);
       }
     }
@@ -49,42 +49,42 @@ const WalletBtn = () => {
 
   const chainNetworks = [
     {
-      chainId: '0x6357d2e0',
-      chainName: 'Harmony Testnet',
-      rpcUrls: ['https://api.s0.b.hmny.io'],
+      chainId: "0x6357d2e0",
+      chainName: "Harmony Testnet",
+      rpcUrls: ["https://api.s0.b.hmny.io"],
       nativeCurrency: {
-        name: 'HARMONY ONE',
-        symbol: 'ONE',
+        name: "HARMONY ONE",
+        symbol: "ONE",
         decimals: 18,
       },
-      blockExplorerUrls: ['https://explorer.pops.one/'],
+      blockExplorerUrls: ["https://explorer.pops.one/"],
     },
     {
-      chainId: '0x13881',
-      chainName: 'Mumbai Testnet',
-      rpcUrls: ['https://rpc-mumbai.matic.today'],
+      chainId: "0x13881",
+      chainName: "Mumbai Testnet",
+      rpcUrls: ["https://rpc-mumbai.matic.today"],
       nativeCurrency: {
-        name: 'MATIC',
-        symbol: 'MATIC',
+        name: "MATIC",
+        symbol: "MATIC",
         decimals: 18,
       },
-      blockExplorerUrls: ['https://explorer-mumbai.maticvigil.com/'],
+      blockExplorerUrls: ["https://explorer-mumbai.maticvigil.com/"],
     },
   ];
 
   const connectChain = async networkData => {
     await window.ethereum.request({
-      method: 'wallet_addEthereumChain',
+      method: "wallet_addEthereumChain",
       params: [networkData],
     });
     setChainConnected(networkData.chainName);
   };
 
-  window.ethereum.on('networkChanged', function (networkId) {
+  window.ethereum.on("networkChanged", function (networkId) {
     // Time to reload your interface with the new networkId
-    console.log('New network ID:', networkId);
-    if (networkId != '0x6357d2e0') {
-      console.error('You are not connected to harmony testnet s0');
+    console.log("New network ID:", networkId);
+    if (networkId !== "0x6357d2e0") {
+      console.error("You are not connected to harmony testnet s0");
     }
   });
 
@@ -104,11 +104,11 @@ const WalletBtn = () => {
         {isWalletConnected
           ? chainConnected
             ? `Connected to ${chainConnected}`
-            : 'Connect chain'
-          : 'Connect Wallet'}
+            : "Connect chain"
+          : "Connect Wallet"}
       </Button>
       <Stack
-        visibility={showChains ? 'visible' : 'hidden'}
+        visibility={showChains ? "visible" : "hidden"}
         m={3}
         border="1px"
         borderColor="gray.200"
