@@ -31,9 +31,7 @@ const WalletBtn = () => {
 
   const GetWeb3 = async () => {
     if (!window.ethereum) {
-      console.log(
-        "You do not have Metamask, Plis install to use this website"
-      );
+      console.log("You do not have Metamask, Plis install to use this website");
       return;
     } else {
       if (window.ethereum) {

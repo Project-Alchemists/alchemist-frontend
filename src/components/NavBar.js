@@ -90,7 +90,7 @@ const MenuLinks = ({ isOpen }) => {
         <MenuItem to="/marketplace">Marketplace</MenuItem>
         <MenuItem to="/balance">Balance</MenuItem>
         <MenuItem to="/about">About</MenuItem>
-        <WalletBtn />  // TODO: Wallet Button Fix
+        <WalletBtn /> {/*  TODO: Wallet Button Fix */}
         {/* {!localStorage.getItem("jwtToken") && (
           <>
             <MenuItem to="/login">

@@ -1,8 +1,20 @@
-import { Box, Heading, Flex, Icon, Input, SimpleGrid } from "@chakra-ui/react";
+import {
+  Box,
+  Heading,
+  Flex,
+  Icon,
+  Input,
+  SimpleGrid,
+  Text,
+  useMediaQuery,
+} from "@chakra-ui/react";
+import { VStack } from "@chakra-ui/layout";
 import { FaSearch } from "react-icons/fa";
 import MarketCard from "components/MarketCard";
 
 const Marketplace = () => {
+  const [isNotSmallerScreen] = useMediaQuery("(min-width:770px)");
+
   const cards = [
     {
       name: "Iron",
@@ -50,15 +62,34 @@ const Marketplace = () => {
         <Icon as={FaSearch} />
       </Flex>
 
-      <SimpleGrid
-        columns={{ base: 1, md: 3 }}
-        spacing={{ base: 5, lg: 8 }}
-        mt={10}
-      >
-        {cards.map(card => (
-          <MarketCard card={card} />
-        ))}
-      </SimpleGrid>
+      <Flex direction={isNotSmallerScreen ? "row" : "column"}>
+        <Box mt={isNotSmallerScreen ? 5 : 2} mr={isNotSmallerScreen ? 5 : 0}>
+          <Box
+            maxW="sm"
+            borderWidth="1px"
+            borderRadius="lg"
+            overflow="hidden"
+            py={3}
+            px={3}
+          >
+            <VStack>
+              <Text>Filters</Text>
+              <Text>Generation</Text>
+            </VStack>
+          </Box>
+        </Box>
+        <Box>
+          <SimpleGrid
+            columns={{ base: 1, md: 3 }}
+            spacing={{ base: 5, lg: 8 }}
+            mt={10}
+          >
+            {cards.map(card => (
+              <MarketCard card={card} />
+            ))}
+          </SimpleGrid>
+        </Box>
+      </Flex>
     </Box>
   );
 };
