@@ -7,6 +7,7 @@ import {
   Button,
   Stack,
   useColorModeValue,
+  useMediaQuery,
 } from "@chakra-ui/react";
 import { Logo } from "Logo";
 import { Link as RouterLink } from "react-router-dom";
@@ -74,83 +75,25 @@ const signOut = () => {
 };
 
 const MenuLinks = ({ isOpen }) => {
+  const [isNotSmallerScreen] = useMediaQuery("(min-width:770px)");
+
   return (
     <Box
       display={{ base: isOpen ? "block" : "none", md: "block" }}
       flexBasis={{ base: "100%", md: "auto" }}
+      ml={isNotSmallerScreen ? 20 : 0}
     >
       <Stack
         spacing={8}
         align="center"
         justify={["center", "space-between", "flex-end", "flex-end"]}
         direction={["column", "row", "row", "row"]}
-        pt={[4, 4, 0, 0]}
       >
         <MenuItem to="/">Home</MenuItem>
         <MenuItem to="/marketplace">Marketplace</MenuItem>
         <MenuItem to="/balance">Balance</MenuItem>
         <MenuItem to="/about">About</MenuItem>
-        <WalletBtn /> {/*  TODO: Wallet Button Fix */}
-        {/* {!localStorage.getItem("jwtToken") && (
-          <>
-            <MenuItem to="/login">
-              <Button
-                size="sm"
-                rounded="md"
-                color={["primary.500", "primary.500", "white", "white"]}
-                bg={["white", "white", "primary.500", "primary.500"]}
-                _hover={{
-                  bg: [
-                    "primary.100",
-                    "primary.100",
-                    "primary.600",
-                    "primary.600",
-                  ],
-                }}
-              >
-                Login
-              </Button>
-            </MenuItem>
-            <MenuItem to="/signup">
-              <Button
-                size="sm"
-                rounded="md"
-                color={["primary.500", "primary.500", "white", "white"]}
-                bg={["white", "white", "primary.500", "primary.500"]}
-                _hover={{
-                  bg: [
-                    "primary.100",
-                    "primary.100",
-                    "primary.600",
-                    "primary.600",
-                  ],
-                }}
-              >
-                Sign Up
-              </Button>
-            </MenuItem>
-          </>
-        )}
-        {localStorage.getItem("jwtToken") && (
-          <MenuItem onClick={() => signOut()}>
-            <Button
-              size="sm"
-              rounded="md"
-              color={["primary.500", "primary.500", "white", "white"]}
-              bg={["white", "white", "primary.500", "primary.500"]}
-              _hover={{
-                bg: [
-                  "primary.100",
-                  "primary.100",
-                  "primary.600",
-                  "primary.600",
-                ],
-              }}
-            >
-              Sign Out
-            </Button>
-          </MenuItem>
-        )} */}
+        <WalletBtn />
       </Stack>
     </Box>
   );
