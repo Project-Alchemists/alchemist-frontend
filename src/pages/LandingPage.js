@@ -10,7 +10,7 @@ const LandingPage = () => {
         fontWeight="extrabold"
         mb={6}
       >
-        POLY <Divider /> CRAFT
+        CRAFT <Divider /> NFTs
       </Text>
     </Box>
   );
