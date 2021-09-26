@@ -31,15 +31,17 @@ const WalletBtn = () => {
 
   const GetWeb3 = async () => {
     if (!window.ethereum) {
-      console.log("You do not have Metamask, Plis install to use this website");
-      return;
+      console.log(
+        "You do not have Metamask, please install it to use this website"
+      );
+      return -1;
     } else {
       if (window.ethereum) {
         web3 = new Web3(window.ethereum);
         await window.ethereum.request({ method: "eth_requestAccounts" });
         setWalletConnected(true);
       } else {
-        console.log("Metamask wallet not avaiable");
+        console.log("Metamask wallet not available");
       }
     }
   };
@@ -70,7 +72,10 @@ const WalletBtn = () => {
   ];
 
   const connectChain = async networkData => {
-    await GetWeb3();
+    const res = await GetWeb3();
+    if (res === -1) {
+      return;
+    }
     await window.ethereum.request({
       method: "wallet_addEthereumChain",
       params: [networkData],
@@ -87,7 +92,7 @@ const WalletBtn = () => {
   });
 
   return (
-    <Box w={250} justifySelf="flex-end">
+    <>
       <Button
         p={7}
         leftIcon={<Image src="https://docs.metamask.io/metamask-fox.svg" />}
@@ -102,7 +107,7 @@ const WalletBtn = () => {
         {isWalletConnected
           ? chainConnected
             ? `Connected to ${chainConnected}`
-            : "Connect chain"
+            : "Connect to chain"
           : "Connect Wallet"}
       </Button>
       <Stack
@@ -119,7 +124,7 @@ const WalletBtn = () => {
           );
         })}
       </Stack>
-    </Box>
+    </>
   );
 };
 
