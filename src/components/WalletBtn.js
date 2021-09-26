@@ -30,9 +30,9 @@ const WalletBtn = () => {
   // }, []);
 
   const GetWeb3 = async () => {
-    if (!window.onewallet && !window.ethereum) {
+    if (!window.ethereum) {
       console.log(
-        "You do not have any supported wallet, connect either One Wallet or Metamask"
+        "You do not have Metamask, Plis install to use this website"
       );
       return;
     } else {
@@ -42,7 +42,6 @@ const WalletBtn = () => {
         setWalletConnected(true);
       } else {
         console.log("Metamask wallet not avaiable");
-        web3 = new Web3(window.onewallet);
       }
     }
   };
@@ -73,6 +72,7 @@ const WalletBtn = () => {
   ];
 
   const connectChain = async networkData => {
+    await GetWeb3();
     await window.ethereum.request({
       method: "wallet_addEthereumChain",
       params: [networkData],
