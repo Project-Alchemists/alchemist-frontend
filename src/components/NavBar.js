@@ -1,5 +1,13 @@
 import { useState } from "react";
-import { Link, Box, Flex, Text, Button, Stack } from "@chakra-ui/react";
+import {
+  Link,
+  Box,
+  Flex,
+  Text,
+  Button,
+  Stack,
+  useColorModeValue,
+} from "@chakra-ui/react";
 import { Logo } from "Logo";
 import { Link as RouterLink } from "react-router-dom";
 import { ColorModeSwitcher } from "./ColorModeSwitcher";
@@ -82,7 +90,7 @@ const MenuLinks = ({ isOpen }) => {
         <MenuItem to="/marketplace">Marketplace</MenuItem>
         <MenuItem to="/balance">Balance</MenuItem>
         <MenuItem to="/about">About</MenuItem>
-        <WalletBtn /> {/* TODO: Wallet Button Fix */}
+        {/* <WalletBtn /> TODO: Wallet Button Fix */}
         {/* {!localStorage.getItem("jwtToken") && (
           <>
             <MenuItem to="/login">
@@ -160,7 +168,7 @@ const NavBarContainer = ({ children, ...props }) => {
         mb={8}
         p={8}
         bg={["primary.500", "primary.500", "transparent", "transparent"]}
-        color={["white", "white", "primary.700", "primary.500"]}
+        color={useColorModeValue("gray.700", "gray.300")}
         {...props}
       >
         {children}

@@ -1,10 +1,16 @@
-import { Box, Text } from "@chakra-ui/react";
+import { Box, Text, Divider } from "@chakra-ui/react";
 
 const LandingPage = () => {
   return (
-    <Box>
-      <Text fontSize="xl" fontWeight="bold">
-        Alchemist
+    <Box px={8} py={24} mx="auto">
+      <Text
+        bgGradient="linear(to-l, #7928CA, #FF0080)"
+        bgClip="text"
+        fontSize={{ base: "5xl", md: "7xl" }}
+        fontWeight="extrabold"
+        mb={6}
+      >
+        POLY <Divider /> CRAFT
       </Text>
     </Box>
   );
