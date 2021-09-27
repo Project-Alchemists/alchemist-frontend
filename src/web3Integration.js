@@ -1,6 +1,8 @@
 import Web3 from "web3";
 import harmonyABI from "./PolycraftMainHarmony.json";
 import polygonABI from "./PolycraftMainPolygon.json";
+import { store } from "./redux/store";
+import * as tokenActions from "./redux/action";
 
 let walletWeb3, contract;
 
@@ -26,6 +28,7 @@ export const getContract = async chainName => {
     );
     console.log(contract);
   }
+  checkTokenBalance();
   return contract;
 };
 
@@ -55,17 +58,23 @@ export const initiateTransaction = async (packSize, onSuccess, onFailure) => {
 };
 
 export const checkTokenBalance = async () => {
-  const addrArray = Array(10).fill(window.ethereum.selectedAddress);
-  const result = await contract.methods
-    .balanceOfBatch(addrArray, [0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
-    .call({ from: window.ethereum.selectedAddress });
-  console.log(result);
+  try {
+    const addrArray = Array(10).fill(window.ethereum.selectedAddress);
+    const result = await contract.methods
+      .balanceOfBatch(addrArray, [0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+      .call({ from: window.ethereum.selectedAddress });
+    console.log(result);
+    store.dispatch(tokenActions.fetchTokens(result));
+    // return result;
+  } catch (error) {
+    console.log(error);
+  }
 };
 
-export const buyNFT = async (onSuccess, onFailure, listingId, chainName) => {
-  const result = (await getContract(chainName)).methods.BuyFromMarket.send(
-    listingId,
-    window.ethereum.selectedAddress,
-    5
-  );
-};
+// export const buyNFT = async (onSuccess, onFailure, listingId, chainName) => {
+//   const result = (await getContract(chainName)).methods.BuyFromMarket.send(
+//     listingId,
+//     window.ethereum.selectedAddress,
+//     5
+//   );
+// };
