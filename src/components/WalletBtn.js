@@ -3,31 +3,13 @@ import { Image } from "@chakra-ui/image";
 import { Box, Stack } from "@chakra-ui/layout";
 import React, { useEffect, useState } from "react";
 import Web3 from "web3";
+import { getContract } from "web3Integration";
 
 const WalletBtn = () => {
   let web3;
   const [isWalletConnected, setWalletConnected] = useState(false);
   const [showChains, setShowChains] = useState(false);
   const [chainConnected, setChainConnected] = useState();
-  // useEffect(() => {
-  //   const networkData = [
-  //     {
-  //       chainId: '0x6357d2e0',
-  //       chainName: 'Harmony Testnet',
-  //       rpcUrls: ['https://api.s0.b.hmny.io'],
-  //       nativeCurrency: {
-  //         name: 'HARMONY ONE',
-  //         symbol: 'ONE',
-  //         decimals: 18,
-  //       },
-  //       blockExplorerUrls: ['https://explorer.pops.one/'],
-  //     },
-  //   ];
-  //   window.ethereum.request({
-  //     method: 'wallet_addEthereumChain',
-  //     params: networkData,
-  //   });
-  // }, []);
 
   const GetWeb3 = async () => {
     if (!window.ethereum) {
@@ -81,13 +63,14 @@ const WalletBtn = () => {
       params: [networkData],
     });
     setChainConnected(networkData.chainName);
+    await getContract(networkData.chainName);
   };
 
   window.ethereum.on("networkChanged", function (networkId) {
     // Time to reload your interface with the new networkId
     console.log("New network ID:", networkId);
-    if (networkId !== "0x6357d2e0") {
-      console.error("You are not connected to harmony testnet s0");
+    if (networkId != 1666700000 || networkId != 80001) {
+      console.error("You are not connected to harmony or polygon");
     }
   });
 
@@ -118,7 +101,13 @@ const WalletBtn = () => {
       >
         {chainNetworks.map(chain => {
           return (
-            <Button variant="ghost" onClick={() => connectChain(chain)}>
+            <Button
+              variant="ghost"
+              onClick={async () => {
+                await connectChain(chain);
+                setShowChains(prev => !prev);
+              }}
+            >
               {chain.chainName}
             </Button>
           );
