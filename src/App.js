@@ -5,7 +5,7 @@ import NavBar from "components/NavBar";
 import LandingPage from "pages/LandingPage";
 import Marketplace from "pages/Marketplace";
 import BalanceCards from "pages/BalanceCards";
-import About from "pages/About";
+import Footer from "components/Footer";
 
 const App = () => {
   return (
@@ -25,11 +25,9 @@ const App = () => {
                 <Route exact path="/balance">
                   <BalanceCards />
                 </Route>
-                <Route exact path="/about">
-                  <About />
-                </Route>
               </Switch>
             </VStack>
+            <Footer />
           </Grid>
         </Box>
       </Router>
