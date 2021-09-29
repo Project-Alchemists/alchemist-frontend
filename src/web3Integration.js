@@ -71,6 +71,28 @@ export const checkTokenBalance = async () => {
   }
 };
 
+export const craftToken = async targetCardId => {
+  const targetData = await fetch(
+    `https://raw.githubusercontent.com/Project-Alchemists/Alchemy-Contracts/main/json-data/${targetCardId}.json`
+  ).then(response => response.json());
+  console.log(targetData);
+  const state = store.getState();
+  for (let i = 0; i < 10; i++) {
+    if (targetData.recipe.includes(i) && state.tokenBalance[i] == 0) {
+      alert("Not enough tokens");
+      return;
+    }
+  }
+  if (store)
+    try {
+      const result = contract.methods
+        .CraftCards(targetCardId)
+        .send({ from: window.ethereum.selectedAddress });
+    } catch (error) {
+      console.log("Crafting error:" + error);
+    }
+};
+
 // export const buyNFT = async (onSuccess, onFailure, listingId, chainName) => {
 //   const result = (await getContract(chainName)).methods.BuyFromMarket.send(
 //     listingId,
