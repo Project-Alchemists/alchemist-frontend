@@ -21,7 +21,7 @@ const NavBar = props => {
 
   return (
     <NavBarContainer {...props} className="navbar">
-      <Logo w="50px" color={["white", "white", "primary.500", "primary.500"]} />
+      <Logo w="50px" />
       <MenuToggle toggle={toggle} isOpen={isOpen} />
       <MenuLinks isOpen={isOpen} />
       <ColorModeSwitcher />
@@ -92,7 +92,7 @@ const MenuLinks = ({ isOpen }) => {
         <MenuItem to="/">Home</MenuItem>
         <MenuItem to="/marketplace">Marketplace</MenuItem>
         <MenuItem to="/balance">Balance</MenuItem>
-        <MenuItem to="/about">About</MenuItem>
+        {/* <MenuItem to="/about">About</MenuItem> */}
         <WalletBtn />
       </Stack>
     </Box>
