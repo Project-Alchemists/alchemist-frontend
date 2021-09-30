@@ -4,7 +4,6 @@ import {
   Box,
   Flex,
   Text,
-  Button,
   Stack,
   useColorModeValue,
   useMediaQuery,
@@ -69,10 +68,10 @@ const MenuItem = ({ children, isLast, to = "/", ...rest }) => {
   );
 };
 
-const signOut = () => {
-  localStorage.removeItem("jwtToken");
-  window.location.reload();
-};
+// const signOut = () => {
+//   localStorage.removeItem("jwtToken");
+//   window.location.reload();
+// };
 
 const MenuLinks = ({ isOpen }) => {
   const [isNotSmallerScreen] = useMediaQuery("(min-width:770px)");

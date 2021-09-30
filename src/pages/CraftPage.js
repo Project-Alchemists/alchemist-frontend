@@ -1,16 +1,7 @@
 import Icon from "@chakra-ui/icon";
 import { Input } from "@chakra-ui/input";
-import {
-  Box,
-  Flex,
-  Heading,
-  SimpleGrid,
-  Text,
-  VStack,
-} from "@chakra-ui/layout";
+import { Box, Flex, Heading, SimpleGrid } from "@chakra-ui/layout";
 import { useMediaQuery } from "@chakra-ui/media-query";
-import Card from "components/Card";
-import MarketCard from "components/MarketCard";
 import CraftCard from "components/CraftCard";
 import React from "react";
 import { FaSearch } from "react-icons/fa";

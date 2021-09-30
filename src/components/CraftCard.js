@@ -1,7 +1,5 @@
-import { Box, Image, Badge, Button } from "@chakra-ui/react";
-import { useState } from "react";
+import { Box, Image, Button } from "@chakra-ui/react";
 import { Async } from "react-async";
-import { useSelector } from "react-redux";
 import { craftToken } from "web3Integration";
 
 const CraftCard = ({ card }) => {
@@ -22,9 +20,6 @@ const CraftCard = ({ card }) => {
     reviewCount: 34,
     rating: 4,
   };
-  const [isLoaded, setIsLoaded] = useState(
-    property.cardData == null ? false : true
-  );
   const rawMatArray = [
     "Iron",
     "Gold",
