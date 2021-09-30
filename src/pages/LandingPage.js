@@ -1,6 +1,5 @@
 import React from "react";
 import {
-  chakra,
   Box,
   useColorModeValue,
   Button,
@@ -13,6 +12,13 @@ import {
   Heading,
 } from "@chakra-ui/react";
 import MeetTheTeam from "components/MeetTheTeam";
+import {
+  VerticalTimeline,
+  VerticalTimelineElement,
+} from "react-vertical-timeline-component";
+import "react-vertical-timeline-component/style.min.css";
+
+import { BiNetworkChart } from "react-icons/bi";
 
 const LandingPage = () => {
   const [isNotSmallerScreen] = useMediaQuery("(min-width:770px)");
@@ -82,6 +88,77 @@ const LandingPage = () => {
             </Icon>
           </Button>
         </Stack>
+      </Box>
+
+      <Box>
+        <Heading
+          as="h2"
+          fontSize="35px"
+          marginTop="120px"
+          marginBottom="70px"
+          className="about-stonkr"
+        >
+          Roadmap
+        </Heading>
+
+        <VerticalTimeline>
+          <VerticalTimelineElement
+            className="vertical-timeline-element--work"
+            contentStyle={{
+              background: "#9F7AEA",
+              color: "#fff",
+            }}
+            contentArrowStyle={{ borderRight: "7px solid  rgb(33, 150, 243)" }}
+            date="1 month"
+            iconStyle={{ background: "rgb(33, 150, 243)", color: "#fff" }}
+            icon={<BiNetworkChart />}
+          >
+            <h3 className="vertical-timeline-element-title">
+              Rewards For Final NFT And Achievement NFTs
+            </h3>
+          </VerticalTimelineElement>
+          <VerticalTimelineElement
+            className="vertical-timeline-element--work"
+            contentStyle={{
+              background: "#0BC5EA",
+              color: "#fff",
+            }}
+            contentArrowStyle={{ borderRight: "7px solid  rgb(33, 150, 243)" }}
+            date="3 months"
+            iconStyle={{ background: "rgb(33, 150, 243)", color: "#fff" }}
+            icon={<BiNetworkChart />}
+          >
+            <h3 className="vertical-timeline-element-title">Marketplace</h3>
+          </VerticalTimelineElement>
+          <VerticalTimelineElement
+            className="vertical-timeline-element--work"
+            contentStyle={{
+              background: "#9F7AEA",
+              color: "#fff",
+            }}
+            contentArrowStyle={{ borderRight: "7px solid  rgb(33, 150, 243)" }}
+            date="6 months"
+            iconStyle={{ background: "rgb(33, 150, 243)", color: "#fff" }}
+            icon={<BiNetworkChart />}
+          >
+            <h3 className="vertical-timeline-element-title">
+              Clans and Trading
+            </h3>
+          </VerticalTimelineElement>
+          <VerticalTimelineElement
+            className="vertical-timeline-element--work"
+            contentStyle={{
+              background: "#0BC5EA",
+              color: "#fff",
+            }}
+            contentArrowStyle={{ borderRight: "7px solid  rgb(33, 150, 243)" }}
+            date="12 months"
+            iconStyle={{ background: "rgb(33, 150, 243)", color: "#fff" }}
+            icon={<BiNetworkChart />}
+          >
+            <h3 className="vertical-timeline-element-title">Mini-Games</h3>
+          </VerticalTimelineElement>
+        </VerticalTimeline>
       </Box>
 
       <Box>

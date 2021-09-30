@@ -44,53 +44,6 @@ const MeetTheTeam = ({ githubpfp, name, title, linkedinlink }) => {
           <Text fontWeight={600} color={"gray.500"} mb={4}>
             {title}
           </Text>
-          {/* 
-        <Stack mt={8} direction={"row"} spacing={4} justifyContent="center">
-          <Link className="meet-dev-button" href={linkedinbtn}>
-            <Button
-              flex={1}
-              height="50px"
-              width="50px"
-              fontSize={"sm"}
-              rounded={"full"}
-              bg={"blue.400"}
-              color={"white"}
-              boxShadow={
-                "0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)"
-              }
-              _hover={{
-                bg: "blue.500",
-              }}
-              _focus={{
-                bg: "blue.500",
-              }}
-            >
-              <FaLinkedin className="meet-dev-socials" />
-            </Button>
-          </Link>
-          <Link className="meet-dev-button" href={githubbtn}>
-            <Button
-              flex={1}
-              height="50px"
-              width="50px"
-              fontSize={"sm"}
-              rounded={"full"}
-              bg={"gray.500"}
-              color={"white"}
-              boxShadow={
-                "0px 1px 25px -5px rgb(140 140 140 / 48%), 0 10px 10px -5px rgb(140 140 140 / 43%)"
-              }
-              _hover={{
-                bg: "gray.600",
-              }}
-              _focus={{
-                bg: "gray.600",
-              }}
-            >
-              <FaGithub className="meet-dev-socials" />
-            </Button>
-          </Link>
-        </Stack> */}
         </Box>
       </Link>
     </Center>
