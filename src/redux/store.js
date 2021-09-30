@@ -1,8 +1,8 @@
 import { combineReducers, createStore } from "redux";
-import tokenReducer from "./reducer";
+import web3Reducer from "./reducer";
 
 const combinedReducers = combineReducers({
-  tokenBalance: tokenReducer,
+  globalState: web3Reducer,
 });
 
 export const store = createStore(combinedReducers);

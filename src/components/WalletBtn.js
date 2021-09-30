@@ -3,17 +3,21 @@ import { Image } from "@chakra-ui/image";
 import { Stack } from "@chakra-ui/layout";
 import { useToast } from "@chakra-ui/toast";
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { setWalletConnected } from "redux/action";
 import { getContract } from "web3Integration";
 
 const WalletBtn = () => {
-  const [isWalletConnected, setWalletConnected] = useState(false);
+  const [isMetamaskConnected, setMetamaskConnected] = useState(false);
   const [showChains, setShowChains] = useState(false);
   const [chainConnected, setChainConnected] = useState();
+  const dispatch = useDispatch();
 
   const toast = useToast();
 
   const GetWeb3 = async () => {
     if (!window.ethereum) {
+      console.log(window.ethereum);
       toast({
         title: "Metamask unavailable",
         description: "Please install Metamask to use this website.",
@@ -26,7 +30,7 @@ const WalletBtn = () => {
       if (window.ethereum) {
         // let web3 = new Web3(window.ethereum);
         await window.ethereum.request({ method: "eth_requestAccounts" });
-        setWalletConnected(true);
+        setMetamaskConnected(true);
         toast({
           title: "Wallet connected!",
           status: "success",
@@ -80,10 +84,11 @@ const WalletBtn = () => {
       params: [networkData],
     });
     setChainConnected(networkData.chainName);
+    dispatch(setWalletConnected(true));
     await getContract(networkData.chainName);
   };
 
-  if (isWalletConnected) {
+  if (isMetamaskConnected) {
     window.ethereum.on("networkChanged", function (networkId) {
       // Time to reload your interface with the new networkId
       console.log("New network ID:", networkId);
@@ -105,14 +110,14 @@ const WalletBtn = () => {
         p={7}
         leftIcon={<Image src="https://docs.metamask.io/metamask-fox.svg" />}
         onClick={
-          isWalletConnected
+          isMetamaskConnected
             ? () => {
                 setShowChains(prev => !prev);
               }
             : GetWeb3
         }
       >
-        {isWalletConnected
+        {isMetamaskConnected
           ? chainConnected
             ? `Connected to ${chainConnected}`
             : "Connect to chain"

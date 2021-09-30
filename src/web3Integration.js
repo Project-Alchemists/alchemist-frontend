@@ -32,10 +32,15 @@ export const getContract = async chainName => {
   return contract;
 };
 
-export const initiateTransaction = async (packSize, onSuccess, onFailure) => {
-  const result = contract.methods.InitiatePackSale(0).send({
+export const initiateTransaction = async (
+  { packSize },
+  onSuccess,
+  onFailure
+) => {
+  console.log(packSize + 1);
+  const result = contract.methods.InitiatePackSale(packSize).send({
     from: window.ethereum.selectedAddress,
-    value: 0.01 * Math.pow(10, 18),
+    value: 0.01 * (packSize + 1) * Math.pow(10, 18),
   });
 
   result
@@ -72,17 +77,18 @@ export const checkTokenBalance = async () => {
 };
 
 export const craftToken = async targetCardId => {
-  const targetData = await fetch(
-    `https://raw.githubusercontent.com/Project-Alchemists/Alchemy-Contracts/main/json-data/${targetCardId}.json`
-  ).then(response => response.json());
-  console.log(targetData);
-  const state = store.getState();
-  for (let i = 0; i < 10; i++) {
-    if (targetData.recipe.includes(i) && state.tokenBalance[i] === 0) {
-      alert("Not enough tokens");
-      return;
-    }
-  }
+  // const targetData = await fetch(
+  //   `https://raw.githubusercontent.com/Project-Alchemists/Alchemy-Contracts/main/json-data/${targetCardId}.json`
+  // ).then(response => response.json());
+  // console.log(targetData);
+  // const state = store.getState();
+  // for (let i = 0; i < 10; i++) {
+  //   if (targetData.recipe.includes(i) && state.tokenBalance[i] === 0) {
+  //     alert("Not enough tokens");
+  //     return;
+  //   }
+  // }
+  console.log(targetCardId);
   if (store)
     try {
       const result = contract.methods

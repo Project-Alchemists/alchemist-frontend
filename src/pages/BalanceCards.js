@@ -4,7 +4,7 @@ import Card from "components/Card";
 import { useSelector } from "react-redux";
 
 const BalanceCards = () => {
-  const { tokens } = useSelector(state => state.tokenBalance);
+  const tokens = useSelector(state => state.globalState.tokens);
 
   return (
     <Box>

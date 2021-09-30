@@ -2,7 +2,7 @@ import { Box, Image } from "@chakra-ui/react";
 
 const Card = ({ card, quantity }) => {
   const property = {
-    imageUrl: `https://gateway.pinata.cloud/ipfs/QmbBaacQJBy18r13qU3V4yweJ9qTGpMPWrW9BxYeLQWYbd/${card}.png`,
+    imageUrl: ` https://ipfs.infura.io/ipfs/QmbBaacQJBy18r13qU3V4yweJ9qTGpMPWrW9BxYeLQWYbd/${card}.png`,
     imageAlt: "Rear view of modern home with pool",
     beds: 3,
     baths: 2,

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Box,
   useColorModeValue,
@@ -9,6 +9,7 @@ import {
   useMediaQuery,
   Flex,
   Spacer,
+  Select,
   Heading,
 } from "@chakra-ui/react";
 import MeetTheTeam from "components/MeetTheTeam";
@@ -19,9 +20,16 @@ import {
 import "react-vertical-timeline-component/style.min.css";
 
 import { BiNetworkChart } from "react-icons/bi";
+import { initiateTransaction } from "web3Integration";
+import Web3 from "web3";
+import { useSelector } from "react-redux";
 
 const LandingPage = () => {
   const [isNotSmallerScreen] = useMediaQuery("(min-width:770px)");
+  const [cards, setCards] = useState(0);
+  const isWalletConnected = useSelector(
+    state => state.globalState.isWalletConnected
+  );
 
   return (
     <Box px={8} py={24} mx="auto">
@@ -66,6 +74,15 @@ const LandingPage = () => {
           spacing={2}
           justifyContent={{ sm: "left", md: "center" }}
         >
+          <Select
+            width={225}
+            value={cards}
+            onChange={e => setCards(e.target.value)}
+          >
+            <option value={0}>5 cards</option>
+            <option value={1}>10 cards</option>
+            <option value={2}>15 cards</option>
+          </Select>
           <Button
             as="a"
             variant="solid"
@@ -77,6 +94,13 @@ const LandingPage = () => {
             mb={{ base: 2, sm: 0 }}
             size="lg"
             cursor="pointer"
+            onClick={() => {
+              if (!isWalletConnected) {
+                alert("Not connected to metamask");
+              } else {
+                initiateTransaction({ packSize: parseInt(cards) });
+              }
+            }}
           >
             MINT
             <Icon boxSize={4} ml={1} viewBox="0 0 20 20" fill="currentColor">

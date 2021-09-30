@@ -12,7 +12,7 @@ const CraftCard = ({ card }) => {
     ).then(response => response.json());
   console.log(targetData);
   const property = {
-    imageUrl: `https://gateway.pinata.cloud/ipfs/QmbBaacQJBy18r13qU3V4yweJ9qTGpMPWrW9BxYeLQWYbd/${card}.png`,
+    imageUrl: ` https://ipfs.infura.io/ipfs/QmbBaacQJBy18r13qU3V4yweJ9qTGpMPWrW9BxYeLQWYbd/${card}.png`,
     beds: 3,
     baths: 2,
     title: "Modern home in city center in the heart of historic Los Angeles",
@@ -72,7 +72,7 @@ const CraftCard = ({ card }) => {
           </Async>
         </Box>
 
-        <Button onClick={craftToken}>Craft</Button>
+        <Button onClick={() => craftToken(card)}>Craft</Button>
 
         {/* <Box>
           {property.formattedPrice}

@@ -1,13 +1,18 @@
-import { GET_TOKEN_BALANCE } from "./action";
+import { GET_TOKEN_BALANCE, SET_WALLET_CONNECTED } from "./action";
 
 const initialState = {
   tokens: [],
+  isWalletConnected: false,
 };
 
-const tokenReducer = (state = initialState, action) => {
+const web3Reducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_TOKEN_BALANCE: {
-      return { tokens: action.payload };
+      return { ...state, tokens: action.payload };
+    }
+
+    case SET_WALLET_CONNECTED: {
+      return { ...state, isWalletConnected: action.payload };
     }
 
     default:
@@ -15,4 +20,4 @@ const tokenReducer = (state = initialState, action) => {
   }
 };
 
-export default tokenReducer;
+export default web3Reducer;
