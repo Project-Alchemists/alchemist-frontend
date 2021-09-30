@@ -1,6 +1,7 @@
 import { Button } from "@chakra-ui/button";
 import { Image } from "@chakra-ui/image";
 import { Stack } from "@chakra-ui/layout";
+import { useToast } from "@chakra-ui/toast";
 import React, { useState } from "react";
 import { getContract } from "web3Integration";
 
@@ -9,19 +10,37 @@ const WalletBtn = () => {
   const [showChains, setShowChains] = useState(false);
   const [chainConnected, setChainConnected] = useState();
 
+  const toast = useToast();
+
   const GetWeb3 = async () => {
     if (!window.ethereum) {
-      console.log(
-        "You do not have Metamask, please install it to use this website"
-      );
+      toast({
+        title: "Metamask unavailable",
+        description: "Please install Metamask to use this website.",
+        status: "error",
+        isClosable: true,
+        duration: 1000,
+      });
       return -1;
     } else {
       if (window.ethereum) {
         // let web3 = new Web3(window.ethereum);
         await window.ethereum.request({ method: "eth_requestAccounts" });
         setWalletConnected(true);
+        toast({
+          title: "Wallet connected!",
+          status: "success",
+          isClosable: true,
+          duration: 1000,
+        });
       } else {
-        console.log("Metamask wallet not available");
+        toast({
+          title: "Metamask unavailable",
+          description: "Please install Metamask to use this website.",
+          status: "error",
+          isClosable: true,
+          duration: 1000,
+        });
       }
     }
   };
@@ -64,13 +83,21 @@ const WalletBtn = () => {
     await getContract(networkData.chainName);
   };
 
-  window.ethereum.on("networkChanged", function (networkId) {
-    // Time to reload your interface with the new networkId
-    console.log("New network ID:", networkId);
-    if (networkId !== 1666700000 || networkId !== 80001) {
-      console.error("You are not connected to harmony or polygon");
-    }
-  });
+  if (isWalletConnected) {
+    window.ethereum.on("networkChanged", function (networkId) {
+      // Time to reload your interface with the new networkId
+      console.log("New network ID:", networkId);
+      if (networkId !== 1666700000 || networkId !== 80001) {
+        toast({
+          title: "Network not connected.",
+          description: "Connect to Harmony or Polygon network.",
+          status: "error",
+          isClosable: true,
+          duration: 1000,
+        });
+      }
+    });
+  }
 
   return (
     <>
