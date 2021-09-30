@@ -1,9 +1,18 @@
-import { Box, Image } from "@chakra-ui/react";
+import { Box, Image, Button } from "@chakra-ui/react";
+import { Async } from "react-async";
+import { craftToken } from "web3Integration";
 
-const Card = ({ card, quantity }) => {
+const CraftCard = ({ card }) => {
+  // const fetchData = async () => {
+  //   return await
+  // };
+  const targetData = () =>
+    fetch(
+      `https://raw.githubusercontent.com/Project-Alchemists/Alchemy-Contracts/main/json-data/${card}.json`
+    ).then(response => response.json());
+  console.log(targetData);
   const property = {
     imageUrl: `https://gateway.pinata.cloud/ipfs/QmbBaacQJBy18r13qU3V4yweJ9qTGpMPWrW9BxYeLQWYbd/${card}.png`,
-    imageAlt: "Rear view of modern home with pool",
     beds: 3,
     baths: 2,
     title: "Modern home in city center in the heart of historic Los Angeles",
@@ -11,12 +20,23 @@ const Card = ({ card, quantity }) => {
     reviewCount: 34,
     rating: 4,
   };
+  const rawMatArray = [
+    "Iron",
+    "Gold",
+    "Silicon",
+    "Glass",
+    "Plastic",
+    "Copper",
+    "Motherboard",
+    "Monitor",
+    "Case",
+  ];
 
   // TODO: Recipes and unavailable card
 
   return (
     <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden">
-      <Image src={property.imageUrl} alt={property.imageAlt} />
+      <Image src={property.imageUrl} />
 
       <Box p="6">
         {/* <Box d="flex" alignItems="baseline">
@@ -34,7 +54,6 @@ const Card = ({ card, quantity }) => {
             {property.beds} beds &bull; {property.baths} baths
           </Box>
         </Box> */}
-
         <Box
           mt="1"
           fontWeight="semibold"
@@ -42,8 +61,18 @@ const Card = ({ card, quantity }) => {
           lineHeight="tight"
           isTruncated
         >
-          {`Balance: ${quantity}`}
+          <Async promiseFn={targetData}>
+            {({ data, err, isLoading }) => {
+              if (isLoading) return "Loading...";
+              if (err) return `Something went wrong: ${err.message}`;
+              if (data) {
+                return `Recipe: ${data.recipe.map(id => rawMatArray[id])}`;
+              }
+            }}
+          </Async>
         </Box>
+
+        <Button onClick={craftToken}>Craft</Button>
 
         {/* <Box>
           {property.formattedPrice}
@@ -62,4 +91,4 @@ const Card = ({ card, quantity }) => {
   );
 };
 
-export default Card;
+export default CraftCard;

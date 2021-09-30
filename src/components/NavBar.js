@@ -4,7 +4,6 @@ import {
   Box,
   Flex,
   Text,
-  Button,
   Stack,
   useColorModeValue,
   useMediaQuery,
@@ -69,10 +68,10 @@ const MenuItem = ({ children, isLast, to = "/", ...rest }) => {
   );
 };
 
-const signOut = () => {
-  localStorage.removeItem("jwtToken");
-  window.location.reload();
-};
+// const signOut = () => {
+//   localStorage.removeItem("jwtToken");
+//   window.location.reload();
+// };
 
 const MenuLinks = ({ isOpen }) => {
   const [isNotSmallerScreen] = useMediaQuery("(min-width:770px)");
@@ -90,7 +89,8 @@ const MenuLinks = ({ isOpen }) => {
         direction={["column", "row", "row", "row"]}
       >
         <MenuItem to="/">Home</MenuItem>
-        <MenuItem to="/marketplace">Marketplace</MenuItem>
+        {/* <MenuItem to="/marketplace">Marketplace</MenuItem> */}
+        <MenuItem to="/craft">Craft</MenuItem>
         <MenuItem to="/balance">Balance</MenuItem>
         {/* <MenuItem to="/about">About</MenuItem> */}
         <WalletBtn />

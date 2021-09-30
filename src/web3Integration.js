@@ -78,7 +78,7 @@ export const craftToken = async targetCardId => {
   console.log(targetData);
   const state = store.getState();
   for (let i = 0; i < 10; i++) {
-    if (targetData.recipe.includes(i) && state.tokenBalance[i] == 0) {
+    if (targetData.recipe.includes(i) && state.tokenBalance[i] === 0) {
       alert("Not enough tokens");
       return;
     }
@@ -88,6 +88,7 @@ export const craftToken = async targetCardId => {
       const result = contract.methods
         .CraftCards(targetCardId)
         .send({ from: window.ethereum.selectedAddress });
+      console.log(result);
     } catch (error) {
       console.log("Crafting error:" + error);
     }

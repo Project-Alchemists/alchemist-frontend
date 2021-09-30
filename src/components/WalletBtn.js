@@ -1,12 +1,10 @@
 import { Button } from "@chakra-ui/button";
 import { Image } from "@chakra-ui/image";
-import { Box, Stack } from "@chakra-ui/layout";
-import React, { useEffect, useState } from "react";
-import Web3 from "web3";
+import { Stack } from "@chakra-ui/layout";
+import React, { useState } from "react";
 import { getContract } from "web3Integration";
 
 const WalletBtn = () => {
-  let web3;
   const [isWalletConnected, setWalletConnected] = useState(false);
   const [showChains, setShowChains] = useState(false);
   const [chainConnected, setChainConnected] = useState();
@@ -19,7 +17,7 @@ const WalletBtn = () => {
       return -1;
     } else {
       if (window.ethereum) {
-        web3 = new Web3(window.ethereum);
+        // let web3 = new Web3(window.ethereum);
         await window.ethereum.request({ method: "eth_requestAccounts" });
         setWalletConnected(true);
       } else {
@@ -69,7 +67,7 @@ const WalletBtn = () => {
   window.ethereum.on("networkChanged", function (networkId) {
     // Time to reload your interface with the new networkId
     console.log("New network ID:", networkId);
-    if (networkId != 1666700000 || networkId != 80001) {
+    if (networkId !== 1666700000 || networkId !== 80001) {
       console.error("You are not connected to harmony or polygon");
     }
   });

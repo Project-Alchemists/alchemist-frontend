@@ -1,18 +1,7 @@
-import {
-  Heading,
-  Avatar,
-  Box,
-  Center,
-  Text,
-  Stack,
-  Button,
-  Link,
-  useMediaQuery,
-} from "@chakra-ui/react";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { Heading, Avatar, Box, Center, Text, Link } from "@chakra-ui/react";
 
 const MeetTheTeam = ({ githubpfp, name, title, linkedinlink }) => {
-  const [isNotSmallerScreen] = useMediaQuery("(min-width:770px)");
+  // const [isNotSmallerScreen] = useMediaQuery("(min-width:770px)");
 
   return (
     <Center py={6} px={6}>

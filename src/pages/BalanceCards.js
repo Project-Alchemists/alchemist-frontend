@@ -24,6 +24,7 @@ const BalanceCards = () => {
             console.log(tokenNum);
             if (tokenNum !== "0")
               return <Card card={index} quantity={tokenNum} />;
+            return <></>;
           })
         ) : (
           <p>{"Please connect your wallet"}</p>
