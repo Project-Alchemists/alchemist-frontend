@@ -10,6 +10,7 @@ import {
   useMediaQuery,
   Flex,
   Spacer,
+  Heading,
 } from "@chakra-ui/react";
 import MeetTheTeam from "components/MeetTheTeam";
 
@@ -20,12 +21,14 @@ const LandingPage = () => {
     <Box px={8} py={24} mx="auto">
       <Box
         w={{ base: "full", md: 11 / 12, xl: 9 / 12 }}
+        h="60vh"
         mx="auto"
         textAlign={{ base: "left", md: "center" }}
       >
-        <chakra.h1
-          mb={6}
-          fontSize={{ base: "4xl", md: "6xl" }}
+        <Heading
+          as="h1"
+          mb={12}
+          fontSize={{ base: "6xl", md: "8xl" }}
           fontWeight="bold"
           lineHeight="none"
           letterSpacing={{ base: "normal", md: "tight" }}
@@ -40,16 +43,17 @@ const LandingPage = () => {
             fontWeight="extrabold"
           >
             Craft
-          </Text>{" "}
-        </chakra.h1>
-        <chakra.p
+          </Text>
+        </Heading>
+        <Text
           px={{ base: 0, lg: 24 }}
-          mb={6}
-          fontSize={{ base: "lg", md: "xl" }}
+          fontSize={{ base: "xl", md: "3xl" }}
+          fontWeight="semibold"
+          mb={12}
           color={useColorModeValue("gray.600", "gray.300")}
         >
-          Lorem Ipsum
-        </chakra.p>
+          Let's Get Crafting!
+        </Text>
         <Stack
           direction={{ base: "column", sm: "row" }}
           mb={{ base: 4, md: 8 }}
@@ -59,7 +63,7 @@ const LandingPage = () => {
           <Button
             as="a"
             variant="solid"
-            colorScheme="primary"
+            colorScheme="purple"
             display="inline-flex"
             alignItems="center"
             justifyContent="center"
@@ -68,7 +72,7 @@ const LandingPage = () => {
             size="lg"
             cursor="pointer"
           >
-            Get Started
+            MINT
             <Icon boxSize={4} ml={1} viewBox="0 0 20 20" fill="currentColor">
               <path
                 fillRule="evenodd"
@@ -81,15 +85,15 @@ const LandingPage = () => {
       </Box>
 
       <Box>
-        <Text
+        <Heading
           as="h2"
           fontSize="35px"
           marginTop="120px"
           marginBottom="70px"
           className="about-stonkr"
         >
-          Meet the Developer Team
-        </Text>
+          THE TEAM
+        </Heading>
         <Flex
           direction={isNotSmallerScreen ? "row" : "column"}
           justifyContent="center"
@@ -98,32 +102,30 @@ const LandingPage = () => {
             name="Akash Jha"
             title="Blockchain Maven"
             githubpfp="https://avatars.githubusercontent.com/u/75901900?v=4"
-            linkedinbtn={"https://www.linkedin.com/in/akash-jha-063b441b0/"}
-            githubbtn={"https://github.com/akashjha011"}
+            linkedinlink={"https://www.linkedin.com/in/akash-jha-063b441b0/"}
           />
           <Spacer />
           <MeetTheTeam
             name="Ritvij Kumar Sharma"
             title="Tech wizard"
             githubpfp="https://avatars.githubusercontent.com/u/75934932?v=4"
-            linkedinbtn={"https://www.linkedin.com/in/rks-1410/"}
-            githubbtn={"https://github.com/ritvij14"}
+            linkedinlink={"https://www.linkedin.com/in/rks-1410/"}
           />
           <Spacer />
           <MeetTheTeam
             name="Aviral Bansal"
             title="Artist extraordinaire"
             githubpfp="https://avatars.githubusercontent.com/u/72680953?v=4"
-            linkedinbtn={"https://www.linkedin.com/in/aviral-bansal-6139491aa/"}
-            githubbtn={"https://github.com/swarnabgarang"}
+            linkedinlink={
+              "https://www.linkedin.com/in/aviral-bansal-6139491aa/"
+            }
           />
           <Spacer />
           <MeetTheTeam
             name="Arihant Bansal"
-            title="UI developer"
+            title="UI guy"
             githubpfp="https://avatars.githubusercontent.com/u/17180950?v=4"
-            linkedinbtn={"https://www.linkedin.com/in/arihantbansal/"}
-            githubbtn={"https://github.com/arihantbansal"}
+            linkedinlink={"https://www.linkedin.com/in/arihantbansal/"}
           />
           <Spacer />
         </Flex>
