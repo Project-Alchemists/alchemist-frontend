@@ -11,7 +11,7 @@ import {
 } from "@chakra-ui/react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 
-const MeetTheTeam = ({ githubpfp, name, linkedinbtn, githubbtn }) => {
+const MeetTheTeam = ({ githubpfp, name, title, linkedinbtn, githubbtn }) => {
   const [isNotSmallerScreen] = useMediaQuery("(min-width:770px)");
 
   return (
@@ -35,7 +35,7 @@ const MeetTheTeam = ({ githubpfp, name, linkedinbtn, githubbtn }) => {
           {name}
         </Heading>
         <Text fontWeight={600} color={"gray.500"} mb={4}>
-          Undergrad @ BITS Goa
+          {title}
         </Text>
 
         <Stack mt={8} direction={"row"} spacing={4} justifyContent="center">
