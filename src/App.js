@@ -3,9 +3,9 @@ import { ChakraProvider, Box, VStack, Grid, theme } from "@chakra-ui/react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import NavBar from "components/NavBar";
 import LandingPage from "pages/LandingPage";
-import Marketplace from "pages/Marketplace";
 import BalanceCards from "pages/BalanceCards";
 import Footer from "components/Footer";
+import CraftPage from "pages/CraftPage";
 
 const App = () => {
   return (
@@ -19,8 +19,11 @@ const App = () => {
                 <Route exact path="/">
                   <LandingPage />
                 </Route>
-                <Route exact path="/marketplace">
+                {/* <Route exact path="/marketplace">
                   <Marketplace />
+                </Route> */}
+                <Route exact path="/craft">
+                  <CraftPage />
                 </Route>
                 <Route exact path="/balance">
                   <BalanceCards />

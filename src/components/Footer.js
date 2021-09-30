@@ -55,8 +55,11 @@ const Footer = () => {
           <Link as={RouterLink} to={"/"}>
             Home
           </Link>
-          <Link as={RouterLink} to={"/marketplace"}>
+          {/* <Link as={RouterLink} to={"/marketplace"}>
             Marketplace
+          </Link> */}
+          <Link as={RouterLink} to={"/craft"}>
+            Craft
           </Link>
           <Link as={RouterLink} to={"/balance"}>
             Balance

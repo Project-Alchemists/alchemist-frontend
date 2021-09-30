@@ -90,7 +90,8 @@ const MenuLinks = ({ isOpen }) => {
         direction={["column", "row", "row", "row"]}
       >
         <MenuItem to="/">Home</MenuItem>
-        <MenuItem to="/marketplace">Marketplace</MenuItem>
+        {/* <MenuItem to="/marketplace">Marketplace</MenuItem> */}
+        <MenuItem to="/craft">Craft</MenuItem>
         <MenuItem to="/balance">Balance</MenuItem>
         {/* <MenuItem to="/about">About</MenuItem> */}
         <WalletBtn />
