@@ -6,6 +6,7 @@ import LandingPage from "pages/LandingPage";
 import BalanceCards from "pages/BalanceCards";
 import Footer from "components/Footer";
 import CraftPage from "pages/CraftPage";
+import Map from "pages/Map";
 
 const App = () => {
   return (
@@ -27,6 +28,9 @@ const App = () => {
                 </Route>
                 <Route exact path="/balance">
                   <BalanceCards />
+                </Route>
+                <Route exact path="/map">
+                  <Map />
                 </Route>
               </Switch>
             </VStack>

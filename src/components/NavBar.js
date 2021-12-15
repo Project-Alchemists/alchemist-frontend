@@ -92,6 +92,7 @@ const MenuLinks = ({ isOpen }) => {
         {/* <MenuItem to="/marketplace">Marketplace</MenuItem> */}
         <MenuItem to="/craft">Craft</MenuItem>
         <MenuItem to="/balance">Balance</MenuItem>
+        <MenuItem to="/map">Map</MenuItem>
         {/* <MenuItem to="/about">About</MenuItem> */}
         <WalletBtn />
       </Stack>
