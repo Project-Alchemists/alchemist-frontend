@@ -1,6 +1,6 @@
 import "mapbox-gl/dist/mapbox-gl.css";
 import "react-map-gl-geocoder/dist/mapbox-gl-geocoder.css";
-import mapboxGl from "mapbox-gl";
+import mapboxGl from "!mapbox-gl";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import MapGL from "react-map-gl";
 import Geocoder from "react-map-gl-geocoder";
