@@ -9,9 +9,9 @@ import CraftPage from "pages/CraftPage";
 import Map from "pages/Map";
 import getSensorData from "config/graphql";
 const App = () => {
-  useEffect(()=>{
-    getSensorData({});
-  },[])
+  // useEffect(()=>{
+  //   getSensorData({});
+  // },[])
   return (
     <ChakraProvider theme={theme}>
       <Router>

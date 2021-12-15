@@ -1,5 +1,6 @@
 import Web3 from "web3";
 import harmonyABI from "./PolycraftMainHarmony.json";
+import iotexABI from "./PolycraftIotexABI.json";
 import polygonABI from "./PolycraftMainPolygon.json";
 import { store } from "./redux/store";
 import * as tokenActions from "./redux/action";
@@ -15,32 +16,36 @@ export const getWeb3 = async () => {
 
 export const getContract = async chainName => {
   console.log(chainName);
-  if (chainName === "Harmony Testnet") {
-    contract = new (await getWeb3()).eth.Contract(
-      harmonyABI,
-      "0xDe5D570712BA458cA9510d18ed8ca925A7C8F809"
-    );
-    console.log(contract);
-  } else if (chainName === "Mumbai Testnet") {
-    contract = new (await getWeb3()).eth.Contract(
-      polygonABI,
-      "0xe9EB8284427B1e7f78eabF9423bc7B61fA1D75bF"
-    );
-    console.log(contract);
-  }
+  // if (chainName === "Harmony Testnet") {
+  //   contract = new (await getWeb3()).eth.Contract(
+  //     harmonyABI,
+  //     "0xDe5D570712BA458cA9510d18ed8ca925A7C8F809"
+  //   );
+  //   console.log(contract);
+  // } else if (chainName === "Mumbai Testnet") {
+  //   contract = new (await getWeb3()).eth.Contract(
+  //     polygonABI,
+  //     "0xe9EB8284427B1e7f78eabF9423bc7B61fA1D75bF"
+  //   );
+  //   console.log(contract);
+  // }
+  contract = new (await getWeb3()).eth.Contract(
+    harmonyABI,
+    "0xFd3089C922fb9694ffC06b4c4cD0deBADF09CF94"
+  );
   checkTokenBalance();
   return contract;
 };
 
 export const initiateTransaction = async (
-  { packSize },
+  { tokenId },
   onSuccess,
   onFailure
 ) => {
-  console.log(packSize + 1);
-  const result = contract.methods.InitiatePackSale(packSize).send({
+  // console.log(packSize + 1);
+  const result = contract.methods.InitiatePackSale(tokenId).send({
     from: window.ethereum.selectedAddress,
-    value: 0.01 * (packSize + 1) * Math.pow(10, 18),
+    value: 0.01 * Math.pow(10, 18),
   });
 
   result

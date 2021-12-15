@@ -74,7 +74,7 @@ const LandingPage = () => {
           spacing={2}
           justifyContent={{ sm: "left", md: "center" }}
         >
-          <Select
+          {/* <Select
             width={225}
             value={cards}
             onChange={e => setCards(e.target.value)}
@@ -82,8 +82,8 @@ const LandingPage = () => {
             <option value={0}>5 cards</option>
             <option value={1}>10 cards</option>
             <option value={2}>15 cards</option>
-          </Select>
-          <Button
+          </Select> */}
+          {/* <Button
             as="a"
             variant="solid"
             colorScheme="purple"
@@ -110,7 +110,7 @@ const LandingPage = () => {
                 clipRule="evenodd"
               />
             </Icon>
-          </Button>
+          </Button> */}
         </Stack>
       </Box>
 

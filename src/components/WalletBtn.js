@@ -49,28 +49,41 @@ const WalletBtn = () => {
     }
   };
 
+  const iotexId = 4690;
+
   const chainNetworks = [
+    // {
+    //   chainId: "0x6357d2e0",
+    //   chainName: "Harmony Testnet",
+    //   rpcUrls: ["https://api.s0.b.hmny.io"],
+    //   nativeCurrency: {
+    //     name: "HARMONY ONE",
+    //     symbol: "ONE",
+    //     decimals: 18,
+    //   },
+    //   blockExplorerUrls: ["https://explorer.pops.one/"],
+    // },
+    // {
+    //   chainId: "0x13881",
+    //   chainName: "Mumbai Testnet",
+    //   rpcUrls: ["https://rpc-mumbai.matic.today"],
+    //   nativeCurrency: {
+    //     name: "MATIC",
+    //     symbol: "MATIC",
+    //     decimals: 18,
+    //   },
+    //   blockExplorerUrls: ["https://explorer-mumbai.maticvigil.com/"],
+    // },
     {
-      chainId: "0x6357d2e0",
-      chainName: "Harmony Testnet",
-      rpcUrls: ["https://api.s0.b.hmny.io"],
+      chainId: `0x${iotexId.toString(16)}`,
+      chainName: "IoTeX Testnet",
+      rpcUrls: ["https://babel-api.testnet.iotex.io"],
       nativeCurrency: {
-        name: "HARMONY ONE",
-        symbol: "ONE",
+        name: "IOTEX TESTNET TOKEN",
+        symbol: "IOTX-T",
         decimals: 18,
       },
-      blockExplorerUrls: ["https://explorer.pops.one/"],
-    },
-    {
-      chainId: "0x13881",
-      chainName: "Mumbai Testnet",
-      rpcUrls: ["https://rpc-mumbai.matic.today"],
-      nativeCurrency: {
-        name: "MATIC",
-        symbol: "MATIC",
-        decimals: 18,
-      },
-      blockExplorerUrls: ["https://explorer-mumbai.maticvigil.com/"],
+      blockExplorerUrls: ["https://testnet.iotexscan.io/"],
     },
   ];
 
@@ -92,10 +105,10 @@ const WalletBtn = () => {
     window.ethereum.on("networkChanged", function (networkId) {
       // Time to reload your interface with the new networkId
       console.log("New network ID:", networkId);
-      if (networkId !== 1666700000 || networkId !== 80001) {
+      if (networkId !== 4690) {
         toast({
           title: "Network not connected.",
-          description: "Connect to Harmony or Polygon network.",
+          description: "Connect to Iotex network network.",
           status: "error",
           isClosable: true,
           duration: 1000,
@@ -132,6 +145,7 @@ const WalletBtn = () => {
         {chainNetworks.map(chain => {
           return (
             <Button
+              key={chain.chainId}
               variant="ghost"
               onClick={async () => {
                 await connectChain(chain);
