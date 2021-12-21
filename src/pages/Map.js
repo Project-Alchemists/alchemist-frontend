@@ -233,8 +233,9 @@ const Map = () => {
                   isClosable: true,
                 });
               }}
+              isDisabled={!loaded}
             >
-              Mint NFT
+              Claim NFT
             </Button>
           </ButtonGroup>
         </Box>
