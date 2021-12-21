@@ -1,16 +1,18 @@
-import "mapbox-gl/dist/mapbox-gl.css";
-import "react-map-gl-geocoder/dist/mapbox-gl-geocoder.css";
-import mapboxGl from "!mapbox-gl";
 import { useCallback, useEffect, useRef, useState } from "react";
+import axios from "axios";
+import "react-map-gl-geocoder/dist/mapbox-gl-geocoder.css";
+import "mapbox-gl/dist/mapbox-gl.css";
+import mapboxGl from "!mapbox-gl";
 import MapGL, { Marker } from "react-map-gl";
 import Geocoder from "react-map-gl-geocoder";
-import axios from "axios";
-import "./Map.css";
 import { Box, Button, Input, Text, ButtonGroup } from "@chakra-ui/react";
 import { BiLoader } from "react-icons/bi";
 import { useToast } from "@chakra-ui/toast";
 import { useSelector } from "react-redux";
+
 import { initiateTransaction } from "web3Integration";
+import CraftCard from "components/CraftCard";
+import "./Map.css";
 
 var MAPBOX_TOKEN =
   "pk.eyJ1Ijoicml0dmlqMTQiLCJhIjoiY2t4NzVsem5mMDM0cjMxcWN0d2RnbTZsNCJ9.MmqQnU6jnFaF1mv5rCk-oA";
@@ -179,7 +181,14 @@ const Map = () => {
             </Button>
           </ButtonGroup>
         </Box>
-        <Box mt={6}>{!isLoading && loaded && <Box>Done</Box>}</Box>
+        <Box mt={6}>
+          {!isLoading && loaded && (
+            <Box>
+              <Text>Available to redeem!</Text>
+              <CraftCard card={1} />
+            </Box>
+          )}
+        </Box>
       </Box>
     </Box>
   );
