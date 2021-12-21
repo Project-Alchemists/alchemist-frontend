@@ -224,7 +224,7 @@ const LandingPage = () => {
 <Spacer />
           <MeetTheTeam
             name="Anshuman Singh"
-            title="IoT guy"
+            title="Full stack guy"
             githubpfp="https://avatars.githubusercontent.com/u/72680953?v=4"
             linkedinlink={
               "https://www.linkedin.com/in/notanshuman/"
