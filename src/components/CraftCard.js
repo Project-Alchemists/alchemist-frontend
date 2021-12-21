@@ -40,7 +40,7 @@ const CraftCard = ({ card }) => {
             {({ data, err, isLoading }) => {
               if (isLoading) return "Loading...";
               if (err) return `Something went wrong: ${err.message}`;
-              if (data && data.recipe.length !== 0) {
+              if (data) {
                 return `Recipe: ${data.recipe
                   .map(id => rawMatArray[id])
                   .join(", ")}`;
