@@ -1,12 +1,12 @@
 import "mapbox-gl/dist/mapbox-gl.css";
 import "react-map-gl-geocoder/dist/mapbox-gl-geocoder.css";
 import mapboxGl from "!mapbox-gl";
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import MapGL, { Marker } from "react-map-gl";
 import Geocoder from "react-map-gl-geocoder";
 import axios from "axios";
 import "./Map.css";
-import { Box, Button, Input, Text } from "@chakra-ui/react";
+import { Box, Button, Input, Text, ButtonGroup } from "@chakra-ui/react";
 import { BiLoader } from "react-icons/bi";
 import { useToast } from "@chakra-ui/toast";
 import { useSelector } from "react-redux";
@@ -28,6 +28,7 @@ const Map = () => {
   );
   const [placeArray, setPlaceArray] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [loaded, setLoaded] = useState(false);
   const [imei, setImei] = useState("");
   const toast = useToast();
   const isWalletConnected = useSelector(
@@ -53,6 +54,13 @@ const Map = () => {
       })
       .catch(err => console.log(err));
     setIsLoading(false);
+    setLoaded(true);
+    toast({
+      title: "Device found",
+      status: "success",
+      duration: 1000,
+      isClosable: true,
+    });
   };
 
   useEffect(() => {
@@ -82,7 +90,7 @@ const Map = () => {
   );
 
   return (
-    <div style={{ height: "65vh", width: "85vh", display: "flex" }}>
+    <Box style={{ height: "65vh", width: "85vh", display: "flex" }} my={8}>
       <MapGL
         ref={mapRef}
         {...viewport}
@@ -108,45 +116,72 @@ const Map = () => {
           );
         })}
       </MapGL>
-      <Box ml={8}>
-        <Input
-          placeholder="Enter device imei"
-          value={imei}
-          onChange={handleChange}
-        ></Input>
-        <Button mt={4} mr={2} ml={2} onClick={searchDevice}>
-          Search Device
-        </Button>
-        <Button
-          mt={4}
-          onClick={() => {
-            if (placeArray.length === 0) {
-              toast({
-                title:
-                  "Unable to get location data, please make sure you have searched for the device",
-              });
-            }
-            if (isLoading) {
-              toast({
-                title: "Loading...",
-              });
-              return;
-            }
-            if (!isWalletConnected) {
-              toast({
-                title: "Please connect your wallet first",
-              });
-              return;
-            }
+      <Box ml={12}>
+        <Box>
+          <Input
+            placeholder="Enter Device IMEI"
+            value={imei}
+            onChange={handleChange}
+          />
+          <ButtonGroup>
+            <Button
+              isLoading={isLoading}
+              loadingText="Loading"
+              spinnerPlacement="start"
+              mt={4}
+              mr={2}
+              onClick={searchDevice}
+            >
+              Search Device
+            </Button>
+            <Button
+              mt={4}
+              ml={2}
+              onClick={() => {
+                if (placeArray.length === 0) {
+                  toast({
+                    title:
+                      "Unable to get location data, please make sure you have searched for the device",
+                    status: "error",
+                    isClosable: true,
+                    duration: 1000,
+                  });
+                }
+                if (isLoading) {
+                  toast({
+                    title: "Loading...",
+                    status: "success",
+                    isClosable: true,
+                    duration: 1000,
+                  });
+                  return;
+                }
+                if (!isWalletConnected) {
+                  toast({
+                    title: "Please connect your wallet first",
+                    status: "error",
+                    isClosable: true,
+                    duration: 1000,
+                  });
+                  return;
+                }
 
-            initiateTransaction({ tokenId: 1 });
-          }}
-        >
-          Mint NFT
-        </Button>
+                initiateTransaction({ tokenId: 1 });
+                toast({
+                  title: "NFT Minted",
+                  status: "success",
+                  duration: 1000,
+                  isClosable: true,
+                });
+              }}
+            >
+              Mint NFT
+            </Button>
+          </ButtonGroup>
+        </Box>
+        <Box mt={6}>{!isLoading && loaded && <Box>Done</Box>}</Box>
       </Box>
-      {isLoading && <Text ml={4}>Loading....</Text>}
-    </div>
+    </Box>
   );
 };
 
