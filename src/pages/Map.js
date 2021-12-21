@@ -92,7 +92,7 @@ const Map = () => {
   );
 
   return (
-    <Box style={{ height: "65vh", width: "85vh", display: "flex" }} my={8}>
+    <Box style={{ height: "65vh", width: "85vh", display: "flex" }} my={16}>
       <MapGL
         ref={mapRef}
         {...viewport}
@@ -181,10 +181,10 @@ const Map = () => {
             </Button>
           </ButtonGroup>
         </Box>
-        <Box mt={6}>
+        <Box mt={4}>
           {!isLoading && loaded && (
             <Box>
-              <Text>Available to redeem!</Text>
+              <Text mb={2}>Available to redeem!</Text>
               <CraftCard card={1} />
             </Box>
           )}

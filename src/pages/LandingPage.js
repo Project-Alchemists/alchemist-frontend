@@ -208,8 +208,8 @@ const LandingPage = () => {
           <Spacer />
           <MeetTheTeam
             name="Ritvij Kumar Sharma"
-            title="Tech wizard"
-            githubpfp="https://avatars.githubusercontent.com/u/75934932?v=4"
+            title="web3 wizard"
+            githubpfp="https://avatars.githubusercontent.com/u/51456744?v=4"
             linkedinlink={"https://www.linkedin.com/in/rks-1410/"}
           />
           <Spacer />
@@ -224,7 +224,7 @@ const LandingPage = () => {
           <Spacer />
           <MeetTheTeam
             name="Arihant Bansal"
-            title="UI guy"
+            title="React-ista"
             githubpfp="https://avatars.githubusercontent.com/u/17180950?v=4"
             linkedinlink={"https://www.linkedin.com/in/arihantbansal/"}
           />

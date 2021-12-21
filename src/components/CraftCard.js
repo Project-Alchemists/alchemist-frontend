@@ -3,23 +3,14 @@ import { Async } from "react-async";
 import { craftToken } from "web3Integration";
 
 const CraftCard = ({ card }) => {
-  // const fetchData = async () => {
-  //   return await
-  // };
   const targetData = () =>
     fetch(
       `https://raw.githubusercontent.com/Project-Alchemists/Alchemy-Contracts/main/json-data/${card}.json`
     ).then(response => response.json());
   console.log(targetData);
-  const property = {
-    imageUrl: ` https://ipfs.infura.io/ipfs/QmbBaacQJBy18r13qU3V4yweJ9qTGpMPWrW9BxYeLQWYbd/${card}.png`,
-    beds: 3,
-    baths: 2,
-    title: "Modern home in city center in the heart of historic Los Angeles",
-    formattedPrice: "$1,900.00",
-    reviewCount: 34,
-    rating: 4,
-  };
+
+  const imageUrl = `https://ipfs.infura.io/ipfs/QmbBaacQJBy18r13qU3V4yweJ9qTGpMPWrW9BxYeLQWYbd/${card}.png`;
+
   const rawMatArray = [
     "Iron",
     "Gold",
@@ -39,21 +30,6 @@ const CraftCard = ({ card }) => {
       <Image src={property.imageUrl} />
 
       <Box p="6">
-        {/* <Box d="flex" alignItems="baseline">
-          <Badge borderRadius="full" px="2" colorScheme="teal">
-            New
-          </Badge>
-          <Box
-            color="gray.500"
-            fontWeight="semibold"
-            letterSpacing="wide"
-            fontSize="xs"
-            textTransform="uppercase"
-            ml="2"
-          >
-            {property.beds} beds &bull; {property.baths} baths
-          </Box>
-        </Box> */}
         <Box
           mt="1"
           fontWeight="semibold"
@@ -65,27 +41,16 @@ const CraftCard = ({ card }) => {
             {({ data, err, isLoading }) => {
               if (isLoading) return "Loading...";
               if (err) return `Something went wrong: ${err.message}`;
-              if (data) {
-                return `Recipe: ${data.recipe.map(id => rawMatArray[id])}`;
+              if (data && data.length != 0) {
+                return `Recipe: ${data.recipe
+                  .map(id => rawMatArray[id])
+                  .join(", ")}`;
               }
             }}
           </Async>
         </Box>
 
         <Button onClick={() => craftToken(card)}>Craft</Button>
-
-        {/* <Box>
-          {property.formattedPrice}
-          <Box as="span" color="gray.600" fontSize="sm">
-            / wk
-          </Box>
-        </Box> */}
-
-        {/* <Box d="flex" mt="2" alignItems="center">
-          <Box as="span" ml="2" color="gray.600" fontSize="sm">
-            {property.reviewCount} reviews
-          </Box>
-        </Box> */}
       </Box>
     </Box>
   );
