@@ -27,7 +27,7 @@ const CraftCard = ({ card }) => {
 
   return (
     <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden">
-      <Image src={property.imageUrl} />
+      <Image src={imageUrl} />
 
       <Box p="6">
         <Box
