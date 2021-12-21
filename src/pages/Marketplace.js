@@ -55,7 +55,7 @@ const Marketplace = () => {
   ];
 
   return (
-    <Box>
+    <Box mb={16}>
       <Heading mb={10}>Marketplace</Heading>
       <Flex align="center" justify="center">
         <Input size="md" mx={2} />

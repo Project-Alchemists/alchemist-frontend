@@ -28,8 +28,7 @@ const CraftCard = ({ card }) => {
   return (
     <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden">
       <Image src={imageUrl} />
-
-      <Box p="6">
+      <Box py="4">
         <Box
           mt="1"
           fontWeight="semibold"
@@ -41,7 +40,7 @@ const CraftCard = ({ card }) => {
             {({ data, err, isLoading }) => {
               if (isLoading) return "Loading...";
               if (err) return `Something went wrong: ${err.message}`;
-              if (data && data.length != 0) {
+              if (data && data.recipe.length !== 0) {
                 return `Recipe: ${data.recipe
                   .map(id => rawMatArray[id])
                   .join(", ")}`;
@@ -49,7 +48,6 @@ const CraftCard = ({ card }) => {
             }}
           </Async>
         </Box>
-
         <Button onClick={() => craftToken(card)}>Craft</Button>
       </Box>
     </Box>

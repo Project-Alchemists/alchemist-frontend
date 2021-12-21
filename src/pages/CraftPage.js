@@ -10,7 +10,7 @@ const CraftPage = () => {
   const [isNotSmallerScreen] = useMediaQuery("(min-width:770px)");
 
   return (
-    <Box>
+    <Box mb={16}>
       <Heading mb={10}>Craft cards</Heading>
       <Flex align="center" justify="center">
         <Input size="md" mx={2} />

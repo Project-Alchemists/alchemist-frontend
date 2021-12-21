@@ -5,17 +5,65 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import mapboxGl from "!mapbox-gl";
 import MapGL, { Marker } from "react-map-gl";
 import Geocoder from "react-map-gl-geocoder";
-import { Box, Button, Input, Text, ButtonGroup } from "@chakra-ui/react";
+import { Box, Button, Input, Text, ButtonGroup, Image } from "@chakra-ui/react";
 import { BiLoader } from "react-icons/bi";
 import { useToast } from "@chakra-ui/toast";
 import { useSelector } from "react-redux";
 
 import { initiateTransaction } from "web3Integration";
-import CraftCard from "components/CraftCard";
 import "./Map.css";
 
 var MAPBOX_TOKEN =
   "pk.eyJ1Ijoicml0dmlqMTQiLCJhIjoiY2t4NzVsem5mMDM0cjMxcWN0d2RnbTZsNCJ9.MmqQnU6jnFaF1mv5rCk-oA";
+
+const MapCard = ({ card }) => {
+  const targetData = () =>
+    fetch(
+      `https://raw.githubusercontent.com/Project-Alchemists/Alchemy-Contracts/main/json-data/${card}.json`
+    ).then(response => response.json());
+  console.log(targetData);
+
+  const imageUrl = `https://ipfs.infura.io/ipfs/QmbBaacQJBy18r13qU3V4yweJ9qTGpMPWrW9BxYeLQWYbd/${card}.png`;
+
+  const rawMatArray = [
+    "Iron",
+    "Gold",
+    "Silicon",
+    "Glass",
+    "Plastic",
+    "Copper",
+    "Motherboard",
+    "Monitor",
+    "Case",
+  ];
+
+  return (
+    <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden">
+      <Image src={imageUrl} />
+      {/* <Box py="4">
+        <Box
+          mt="1"
+          fontWeight="semibold"
+          as="h4"
+          lineHeight="tight"
+          isTruncated
+        >
+          <Async promiseFn={targetData}>
+            {({ data, err, isLoading }) => {
+              if (isLoading) return "Loading...";
+              if (err) return `Something went wrong: ${err.message}`;
+              if (data && data.recipe.length !== 0) {
+                return `Recipe: ${data.recipe
+                  .map(id => rawMatArray[id])
+                  .join(", ")}`;
+              }
+            }}
+          </Async>
+        </Box>
+      </Box> */}
+    </Box>
+  );
+};
 
 const Map = () => {
   const [viewport, setViewport] = useState({
@@ -92,7 +140,11 @@ const Map = () => {
   );
 
   return (
-    <Box style={{ height: "65vh", width: "85vh", display: "flex" }} my={16}>
+    <Box
+      style={{ height: "65vh", width: "85vh", display: "flex" }}
+      my={16}
+      mb={24}
+    >
       <MapGL
         ref={mapRef}
         {...viewport}
@@ -124,6 +176,11 @@ const Map = () => {
             placeholder="Enter Device IMEI"
             value={imei}
             onChange={handleChange}
+            onKeyPress={event => {
+              if (event.key === "Enter") {
+                searchDevice();
+              }
+            }}
           />
           <ButtonGroup>
             <Button
@@ -185,7 +242,7 @@ const Map = () => {
           {!isLoading && loaded && (
             <Box>
               <Text mb={2}>Available to redeem!</Text>
-              <CraftCard card={1} />
+              <MapCard card={1} />
             </Box>
           )}
         </Box>
