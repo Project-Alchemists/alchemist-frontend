@@ -214,13 +214,23 @@ const LandingPage = () => {
           />
           <Spacer />
           <MeetTheTeam
-            name="Aviral Bansal"
+            name="Abhijeet Swain"
             title="Artist extraordinaire"
             githubpfp="https://avatars.githubusercontent.com/u/72680953?v=4"
             linkedinlink={
-              "https://www.linkedin.com/in/aviral-bansal-6139491aa/"
+              "https://www.linkedin.com/in/abhijeet-swain-2103"
             }
           />
+<Spacer />
+          <MeetTheTeam
+            name="Anshuman Singh"
+            title="IoT guy"
+            githubpfp="https://avatars.githubusercontent.com/u/72680953?v=4"
+            linkedinlink={
+              "https://www.linkedin.com/in/notanshuman/"
+            }
+          />
+
           <Spacer />
           <MeetTheTeam
             name="Arihant Bansal"
